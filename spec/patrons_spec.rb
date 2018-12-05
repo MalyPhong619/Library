@@ -52,4 +52,24 @@ end
     end
   end
 
+  describe("#update_name") do
+    it("lets you update patrons in the database") do
+      patron = Patron.new({:name => "Guy", :id => nil})
+      patron.save()
+      patron.update_name({:name => "Steve"})
+      expect(patron.name()).to(eq("Steve"))
+    end
+  end
+
+  describe("#delete") do
+    it("lets you delete a patron from the database") do
+      patron1 = Patron.new({:name => "Maly", :id => nil})
+      patron1.save()
+      patron2 = Patron.new({:name => "Chris", :id => nil})
+      patron2.save()
+      patron2.delete()
+      expect(Patron.all()).to(eq([patron1]))
+    end
+  end
+
 end

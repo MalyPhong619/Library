@@ -40,4 +40,14 @@ attr_accessor :title, :id
     found_book
   end
 
+  def update_title(attributes)
+    @title = attributes.fetch(:title)
+    @id = self.id()
+    DB.exec("UPDATE books SET title = '#{@title}' WHERE id = #{@id};")
+  end
+
+  def delete
+    DB.exec("DELETE from books WHERE id = #{self.id()};")
+  end
+
 end

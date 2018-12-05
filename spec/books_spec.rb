@@ -51,4 +51,24 @@ describe("#==") do
   end
 end
 
+describe("#update_title") do
+  it("lets you update books in the database") do
+    book = Book.new({:title => "Green Eggs and Ham", :id => nil})
+    book.save()
+    book.update_title({:title => "1 Fish 2 Fish"})
+    expect(book.title()).to(eq("1 Fish 2 Fish"))
+  end
+end
+
+describe("#delete") do
+    it("lets you delete a book from the database") do
+      book1 = Book.new({:title => "Green eggs and ham", :id => nil})
+      book1.save()
+      book2 = Book.new({:title => "1 fish 2 fish", :id => nil})
+      book2.save()
+      book1.delete()
+      expect(Book.all()).to(eq([book2]))
+    end
+  end
+
 end
