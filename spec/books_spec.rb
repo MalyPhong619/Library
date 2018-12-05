@@ -12,14 +12,14 @@ require("spec_helper")
 
   describe("#title") do
   it("tells you its title") do
-    book = Book.new({:title => "Treasure Island"})
+    book = Book.new({:title => "Treasure Island", :id => nil})
     expect(book.title()).to(eq("Treasure Island"))
   end
 end
 
 describe("#id") do
   it("sets its book ID when you save it") do
-    book = Book.new({:title => "A Christmas Carol"})
+    book = Book.new({:title => "A Christmas Carol", :id => nil})
     book.save()
     expect(book.id()).to(be_an_instance_of(Integer))
   end
@@ -27,7 +27,7 @@ end
 
 describe("#save") do
   it("lets you save books to the database") do
-    book = Book.new({:title => "Treasure Island", :id => ""})
+    book = Book.new({:title => "Treasure Island", :id => nil})
     book.save()
     expect(Book.all()).to(eq([book]))
   end

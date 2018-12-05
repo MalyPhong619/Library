@@ -1,9 +1,9 @@
 class Patron
-attr_accessor :name, :user_id
+attr_accessor :name, :id
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
-    @user_id = attributes.fetch(:user_id)
+    @id = attributes.fetch(:id)
   end
 
   def self.all
@@ -11,19 +11,19 @@ attr_accessor :name, :user_id
     patrons = []
     returned_patrons.each() do |patron|
       name = patron.fetch("name")
-      user_id = patron.fetch("user_id").to_i()
-      patrons.push(Book.new({:name => name, :user_id => user_id}))
+      id = patron.fetch("id").to_i()
+      patrons.push(Patron.new({:name => name, :id => id}))
   end
     patrons
   end
 
   def save
-    result = DB.exec("INSERT INTO partrons (name, user_id) VALUES ('#{@name}', #{@user_id} RETURNING user_id;")
-    @user_id = result.first().fetch("user_id").to_i()
+    result = DB.exec("INSERT INTO patrons (name) VALUES ('#{@name}') RETURNING id;")
+    @id = result.first().fetch("id").to_i()
   end
 
   def ==(another_patron)
-    self.name().==(another_patron.name()).&(self.user_id().==(another_patron.user_id()))
+    self.name().==(another_patron.name()).&(self.id().==(another_patron.id()))
   end
 
 end

@@ -11,27 +11,27 @@ require("spec_helper")
     end
   end
 
-#   describe("#name") do
-#   it("tells you its name") do
-#     patron = Patron.new({:name => "Chris", :user_id => 3})
-#     expect(patron.name()).to(eq("Chris"))
-#   end
-# end
-#
-#   describe("#id") do
-#     it("sets its book ID when you save it") do
-#       book = Book.new({:title => "A Christmas Carol", :book_id => 3})
-#       book.save()
-#       expect(book.book_id()).to(be_an_instance_of(Integer))
-#     end
-#   end
-#
-#   describe("#save") do
-#     it("lets you save books to the database") do
-#       book = Book.new({:title => "Treasure Island", :book_id =>3})
-#       book.save()
-#       expect(Book.all()).to(eq([book]))
-#     end
-#   end
+  describe("#name") do
+  it("tells you its name") do
+    patron = Patron.new({:name => "Chris", :id => nil})
+    expect(patron.name()).to(eq("Chris"))
+  end
+end
+
+  describe("#id") do
+    it("sets its patron ID when you save it") do
+      patron = Patron.new({:name => "Maly", :id => nil})
+      patron.save()
+      expect(patron.id()).to(be_an_instance_of(Integer))
+    end
+  end
+
+  describe("#save") do
+    it("lets you save patron to the database") do
+      patron = Patron.new({:name => "Treasure Island", :id => nil})
+      patron.save()
+      expect(Patron.all()).to(eq([patron]))
+    end
+  end
 
 end
