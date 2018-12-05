@@ -30,4 +30,14 @@ attr_accessor :title, :id
     self.title().==(another_book.title()).&(self.id().==(another_book.id()))
   end
 
+  def self.find(id)
+    found_book = nil
+    Book.all().each() do |book|
+      if book.id().==(id)
+        found_book = book
+      end
+    end
+    found_book
+  end
+
 end

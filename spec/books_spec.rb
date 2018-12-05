@@ -33,4 +33,22 @@ describe("#save") do
   end
 end
 
+describe("#==") do
+    it("is the same book if it has the same name") do
+      book1 = Book.new({:title => "Epicodus", :id => nil})
+      book2 = Book.new({:title => "Epicodus", :id => nil})
+      expect(book1).to(eq(book2))
+    end
+  end
+
+  describe(".find") do
+  it("returns a book by its ID") do
+    book = Book.new({:title => "Encyclopedia", :id => nil})
+    book.save()
+    book2 = Book.new({:title => "Dictionary", :id => nil})
+    book2.save()
+    expect(Book.find(book2.id())).to(eq(book2))
+  end
+end
+
 end

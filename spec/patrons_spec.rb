@@ -34,4 +34,22 @@ end
     end
   end
 
+  describe("#==") do
+      it("is the same patron if it has the same name") do
+        patron1 = Patron.new({:name => "Epicodus", :id => nil})
+        patron2 = Patron.new({:name => "Epicodus", :id => nil})
+        expect(patron1).to(eq(patron2))
+      end
+    end
+
+    describe(".find") do
+    it("returns a patron by its ID") do
+      patron = Patron.new({:name => "Joe", :id => nil})
+      patron.save()
+      patron2 = Patron.new({:name => "Chris", :id => nil})
+      patron2.save()
+      expect(Patron.find(patron2.id())).to(eq(patron2))
+    end
+  end
+
 end
