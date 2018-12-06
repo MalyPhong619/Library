@@ -18,10 +18,6 @@ attr_accessor :title, :id
     books
   end
 
-  # def self.test_method_books
-  #   books = DB.exec("SELECT * FROM books;")
-  # end
-
   def save
     result = DB.exec("INSERT INTO books (title) VALUES ('#{@title}') RETURNING id;")
     @id = result.first().fetch("id").to_i()

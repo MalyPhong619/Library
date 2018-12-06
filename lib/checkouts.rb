@@ -7,8 +7,9 @@ class Checkouts
     @patron_id = attributes.fetch(:patron_id)
   end
 
-  def checkout
-
+  def self.all
+    checkout_books = []
+    
   end
 
 
