@@ -1,0 +1,16 @@
+<h2>Name : <%= @patron.name %>
+</h2>
+
+<h3>Patron ID:  <%= @patron.id%>
+</h3>
+
+<h2>Books out for <%=@patron.name%> - <a href="/books/edit">Add Book</a> </h2>
+<ul>
+  <% @patronbooks.each do |book| %>
+    <li><a href="books/<%= book.id %>"><%= book.book_id
+
+     %></a></li>
+  <% end %>
+</ul>
+
+<a href="/">return home</a>

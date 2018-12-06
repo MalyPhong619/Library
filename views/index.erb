@@ -1,17 +1,26 @@
 <h1>Library</h1>
 
-<h2>Books - <a href="/books/add">Add Book</a> </h2>
+<h2>Books - <a href="/books/edit">Add Book</a> </h2>
 <ul>
   <% @books.each do |book| %>
-    <li><a href="books/<%= book.id %>"><%= book.title %></a></li>
+    <li><a href="books/<%= book.id %>"><%= book.title %>, <%=book.amount%></a></li>
   <% end %>
 </ul>
 
 
-<h2>Patrons - <a href="/patrons/add">Add Patron</a> </h2>
+<h2>Patrons - <a href="/patrons/edit">Add Patron</a> </h2>
 
 <ul>
   <% @patrons.each do |patron| %>
     <li><a href="patrons/<%= patron.id %>"><%= patron.name %></a></li>
   <% end %>
 </ul>
+
+<h2>Checkouts</h2>
+<ul>
+  <% @checkouts.each do |checkout| %>
+    <li><a href="checkouts/<%= checkout.id %>">Patron - <%= checkout.patron_id %>, Book - <%=checkout.book_id%></a></li>
+  <% end %>
+</ul>
+
+<h3>Click <a href="/checkout">here</a> to check a book out</h3>

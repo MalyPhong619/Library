@@ -1,9 +1,10 @@
 class Book
-attr_accessor :title, :id
+attr_accessor :title, :id, :amount
 
   def initialize(attributes)
     @title = attributes.fetch(:title)
     @id = attributes.fetch(:id)
+    @amount = attributes.fetch(:amount)
 
   end
 
@@ -13,13 +14,14 @@ attr_accessor :title, :id
     returned_books.each() do |book|
       title = book.fetch("title")
       id = book.fetch("id").to_i()
-      books.push(Book.new({:title => title, :id => id}))
+      amount = book.fetch("amount").to_i()
+      books.push(Book.new({:title => title, :id => id, :amount => amount}))
   end
     books
   end
 
   def save
-    result = DB.exec("INSERT INTO books (title) VALUES ('#{@title}') RETURNING id;")
+    result = DB.exec("INSERT INTO books (title, amount) VALUES ('#{@title}', #{@amount}) RETURNING id;")
     @id = result.first().fetch("id").to_i()
   end
 

@@ -51,8 +51,8 @@ attr_accessor :name, :id
     results = DB.exec("SELECT book_id FROM ")
   end
 
-  def checkout
-    DB.exec("INSERT INTO checkouts (book_id, patron_id) VALUES (#{@id})")
-  end
+  # def checkout(book_id)
+  #   DB.exec("INSERT INTO checkouts (book_id, patron_id) VALUES (#{@book_id}, #{@patron_id})")
+  # end
 
 end
