@@ -44,7 +44,7 @@ attr_accessor :title, :id
   def update(attributes)
     @title = attributes.fetch(:title)
     @id = self.id()
-    DB.exec("UPDATE books SET title = '#{@title}' WHERE id = #{@id};")
+    DB.exec("UPDATE books SET title = '#{@title}' WHERE patron_id = #{@id};")
   end
 
   def delete
