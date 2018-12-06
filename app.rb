@@ -63,7 +63,7 @@ post('/checkout') do
   book_id = params["book_id"]
   Checkout.checking_out(book_id)
   checkout = Checkout.new({id: nil, book_id: params["book_id"], patron_id: params["patron_id"]})
-  checkout.save()
+  checkout.save(book_id)
   # @book_id = params["book_id"]
   # Checkout.checking_out()
   redirect('/')

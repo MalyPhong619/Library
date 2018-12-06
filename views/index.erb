@@ -19,8 +19,11 @@
 <h2>Checkouts</h2>
 <ul>
   <% @checkouts.each do |checkout| %>
-    <li><a href="checkouts/<%= checkout.id %>">Patron - <%= checkout.patron_id %>, Book - <%=checkout.book_id%></a></li>
+    <li><a href="checkouts/<%= checkout.id %>">Patron - <%= Patron.find(checkout.patron_id.to_i).name %>, Book - <%=Book.find(checkout.book_id.to_i).title%></a></li>
   <% end %>
 </ul>
 
 <h3>Click <a href="/checkout">here</a> to check a book out</h3>
+
+<h1> <%= @error %>
+</h1>
