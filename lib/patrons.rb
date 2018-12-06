@@ -36,7 +36,7 @@ attr_accessor :name, :id
     found_patron
   end
 
-  def update_name(attributes)
+  def update(attributes)
     @name = attributes.fetch(:name)
     @id = self.id()
     DB.exec("UPDATE patrons SET name = '#{@name}' WHERE id = #{@id}")
@@ -44,6 +44,11 @@ attr_accessor :name, :id
 
   def delete
     DB.exec("DELETE FROM patrons WHERE id = #{self.id()};")
+  end
+
+  def books
+    patron_books = []
+    results = DB.exec("SELECT book_id FROM ")
   end
 
 end

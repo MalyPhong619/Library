@@ -4,6 +4,7 @@ attr_accessor :title, :id
   def initialize(attributes)
     @title = attributes.fetch(:title)
     @id = attributes.fetch(:id)
+
   end
 
   def self.all
@@ -40,7 +41,7 @@ attr_accessor :title, :id
     found_book
   end
 
-  def update_title(attributes)
+  def update(attributes)
     @title = attributes.fetch(:title)
     @id = self.id()
     DB.exec("UPDATE books SET title = '#{@title}' WHERE id = #{@id};")

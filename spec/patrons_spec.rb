@@ -52,12 +52,23 @@ end
     end
   end
 
-  describe("#update_name") do
+  describe("#update") do
     it("lets you update patrons in the database") do
       patron = Patron.new({:name => "Guy", :id => nil})
       patron.save()
-      patron.update_name({:name => "Steve"})
+      patron.update({:name => "Steve"})
       expect(patron.name()).to(eq("Steve"))
+    end
+    it("lets you add a book to the patron") do
+      patron = Patron.new({:name => "Guy", :id => nil})
+      patron.save()
+      book = Book.new({:title => "Green Eggs", :id => nil})
+      book.save()
+      book2 = Book.new({:title => "A Tale of Two Cities", :id => nil})
+      book2.save()
+      patron.update({:book_ids => [book.id(), book2.id()]})
+      expect(patron.books()).to(eq([book, book2]))
+
     end
   end
 
@@ -71,5 +82,6 @@ end
       expect(Patron.all()).to(eq([patron1]))
     end
   end
+
 
 end
