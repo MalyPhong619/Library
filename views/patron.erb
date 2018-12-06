@@ -7,9 +7,7 @@
 <h2>Books out for <%=@patron.name%> - <a href="/books/edit">Add Book</a> </h2>
 <ul>
   <% @patronbooks.each do |book| %>
-    <li><a href="books/<%= book.id %>"><%= book.book_id
-
-     %></a></li>
+    <li><a href="books/<%= book.id %>"><%= Book.find(book.book_id.to_i).title %></a></li>
   <% end %>
 </ul>
 

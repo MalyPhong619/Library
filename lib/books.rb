@@ -5,6 +5,7 @@ attr_accessor :title, :id, :amount
     @title = attributes.fetch(:title)
     @id = attributes.fetch(:id)
     @amount = attributes.fetch(:amount)
+    @array_of_books = []
 
   end
 
@@ -48,5 +49,19 @@ attr_accessor :title, :id, :amount
   def delete
     DB.exec("DELETE from books WHERE id = #{self.id()};")
   end
+
+  def self.checkout(patron_id)
+    @patron = patron_id
+    patronbooks = DB.exec("SELECT * from checkouts where patron_id = #{@patron};")
+    patron_books = []
+    patronbooks.each() do |patronbook|
+      id = patronbook.fetch("id")
+      book_id = patronbook.fetch("book_id")
+      patron_id = patronbook.fetch("patron_id")
+      patron_books.push(Checkout.new({:id => id, :book_id => book_id, :patron_id => patron_id}))
+  end
+    patron_books
+  end
+
 
 end

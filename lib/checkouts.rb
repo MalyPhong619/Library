@@ -25,20 +25,6 @@ class Checkout
     @id = result.first().fetch("id").to_i()
   end
 
-  def self.checkout(patron_id)
-    @patron = patron_id
-    patronbooks = DB.exec("SELECT * from checkouts where patron_id = #{@patron};")
-    patron_books = []
-    patronbooks.each() do |patronbook|
-      id = patronbook.fetch("id")
-      book_id = patronbook.fetch("book_id")
-      patron_id = patronbook.fetch("patron_id")
-      patron_books.push(Checkout.new({:id => id, :book_id => book_id, :patron_id => patron_id}))
-  end
-    patron_books
-  end
-
-
   def self.checking_out(book_id)
     @book = book_id.to_i()
     DB.exec("UPDATE books SET amount = (amount - 1) where id = #{@book};")

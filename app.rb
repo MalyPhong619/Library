@@ -4,6 +4,7 @@ also_reload("lib/**/*.rb")
 require("./lib/books")
 require("./lib/patrons")
 require("./lib/checkouts")
+require("pry")
 require("pg")
 
 DB = PG.connect({:dbname => "library"})
@@ -12,7 +13,7 @@ get('/') do
   @books = Book.all()
   @patrons = Patron.all()
   @checkouts = Checkout.all()
-
+  # binding.pry
   erb(:index)
 end
 
@@ -41,7 +42,8 @@ end
 get ('/patrons/:id') do
   @patron_id = params[:id].to_i
   @patron = Patron.find(@patron_id)
-  @patronbooks = Checkout.checkout(@patron_id)
+  @patronbooks = Book.checkout(@patron_id)
+  # binding.pry
   erb(:patron)
 end
 
