@@ -1,0 +1,21 @@
+<h2>Check In here</h2>
+
+<form action="/checkin" method="post">
+  <label for="patron">Select a Patron</label>
+  <select id='patron' name='patron_id' type='text'>
+    <% @patrons.each() do |patron| %>
+      <option value="<%= patron.id()%>"> <%= patron.name() %> </option>
+    <% end %>
+  </select>
+  <label for="book">Select a Book</label>
+  <select id='book' name='book_id' type='text'>
+    <% @books.each() do |book| %>
+      <option value="<%= book.id()%>"> <%= book.title() %> </option>
+    <% end %>
+  </select>
+  <button type="submit">Checkout!</button>
+</form>
+
+<a href="/">return home</a>
+
+<h1> <%= @error %> </h1>

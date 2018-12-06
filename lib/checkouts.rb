@@ -25,19 +25,27 @@ class Checkout
     if Book.find(@book).amount >= 1
       result = DB.exec("INSERT INTO checkouts (book_id, patron_id) VALUES (#{@book_id}, #{@patron_id}) RETURNING id;")
       @id = result.first().fetch("id").to_i()
+      @error = "book checked out!"
     else
-      @error = "one of those books left!"
+      @error = "none of those books left!"
     end
+
   end
 
   def self.checking_out(book_id)
     @book = book_id.to_i()
     if Book.find(@book).amount >= 1
       DB.exec("UPDATE books SET amount = (amount - 1) where id = #{@book};")
-      # @error = 'checkout approved'
+      @error = "book checked out!"
     else
       @error = "none of those books left!"
     end
+  end
+
+  def self.checking_in(checkout_id)
+    @book = book_id.to_i()
+    DB.exec("UPDATE books SET amount = (amount + 1) where id = #{@book};")
+
   end
 
 

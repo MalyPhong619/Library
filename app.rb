@@ -61,16 +61,17 @@ end
 
 post('/checkout') do
   book_id = params["book_id"]
-  Checkout.checking_out(book_id)
+  @error = Checkout.checking_out(book_id)
   checkout = Checkout.new({id: nil, book_id: params["book_id"], patron_id: params["patron_id"]})
   checkout.save(book_id)
-  # @book_id = params["book_id"]
-  # Checkout.checking_out()
-  redirect('/')
+  @books = Book.all()
+  @patrons = Patron.all()
+
+  erb(:checkout)
 end
 
 get ('/checkin') do
   @books = Book.all()
   @patrons = Patron.all()
-  erb(:checkout)
+  erb(:checkin)
 end
