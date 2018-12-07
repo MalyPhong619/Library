@@ -42,10 +42,11 @@ class Checkout
     end
   end
 
-  def self.checking_in(checkout_id)
+  def self.checking_in(book_id, patron_id)
     @book = book_id.to_i()
+    @patron = patron_id.to_i()
     DB.exec("UPDATE books SET amount = (amount + 1) where id = #{@book};")
-
+    DB.exec("DELETE FROM checkouts where (book_id = #{@book}) AND (patron_id = #{@patron});")
   end
 
 

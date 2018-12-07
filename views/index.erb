@@ -1,11 +1,13 @@
 <h1>Library</h1>
 
 <h2>Books - <a href="/books/edit">Add Book</a> </h2>
-<ul>
+
+<dl>
   <% @books.each do |book| %>
-    <li><a href="books/<%= book.id %>"><%= book.title %>, <%=book.amount%></a></li>
+    <dt><a href="books/<%= book.id %>">Book - <%= book.title %></a></dt>
+    <dd><a href="books/<%= book.id %>">Number Remaining -  <%=book.amount%></a></dd>
   <% end %>
-</ul>
+</dl>
 
 
 <h2>Patrons - <a href="/patrons/edit">Add Patron</a> </h2>

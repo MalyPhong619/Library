@@ -13,10 +13,9 @@ get('/') do
   @books = Book.all()
   @patrons = Patron.all()
   @checkouts = Checkout.all()
-  # binding.pry
+
   erb(:index)
 end
-
 
 get('/books/edit') do
 
@@ -73,5 +72,13 @@ end
 get ('/checkin') do
   @books = Book.all()
   @patrons = Patron.all()
+  @checkouts = Checkout.all()
   erb(:checkin)
+end
+
+post('/checkin') do
+  book_id = params["book_id"]
+  patron_id = params["patron_id"]
+  Checkout.checking_in(book_id, patron_id)
+  redirect('/')
 end
